@@ -1,0 +1,16 @@
+name: seek_qr_app
+repository: https://github.com/jcuevashub/seek_qr_app
+
+packages:
+  - apps/*
+  - packages/*
+
+scripts:
+  bootstrap: melos bootstrap
+  analyze: melos run analyze
+  test: melos run test
+  format: melos run format
+
+command:
+  bootstrap:
+    runPubGetInParallel: true

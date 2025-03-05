@@ -1,0 +1,27 @@
+name: qr_scanner
+description: Un plugin nativo para escaneo de códigos QR en Android e iOS.
+version: 1.0.0
+homepage: https://github.com/tu-repo/seek_qr_app
+publish_to: none # No se publica en pub.dev, solo se usa dentro del monorepo
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.seek.qrscanner
+        pluginClass: QrScannerPlugin
+      ios:
+        pluginClass: QrScannerPlugin
+
+dependencies:
+  flutter:
+    sdk: flutter
+  pigeon: ^9.2.0 # Para la comunicación entre Flutter y código nativo
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

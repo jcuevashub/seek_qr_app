@@ -13,6 +13,8 @@ dependencies:
     path: ../qr_scanner
   auth_biometrics:
     path: ../auth_biometrics
+  app_common:
+    path: ../app_common
   cupertino_icons: ^1.0.8
   equatable: ^2.0.7
   dartz: ^0.10.1

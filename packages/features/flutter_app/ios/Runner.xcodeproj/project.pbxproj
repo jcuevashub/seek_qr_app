@@ -14,6 +14,9 @@
 		8BB5CFF72D7912170047C2C7 /* QRScannerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5CFF62D7912170047C2C7 /* QRScannerApi.swift */; };
 		8BB5CFFB2D79165E0047C2C7 /* QRScannerApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5CFFA2D79165B0047C2C7 /* QRScannerApiImpl.swift */; };
 		8BB5CFFD2D7A5EBD0047C2C7 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5CFFC2D7A5EBD0047C2C7 /* QRScannerViewController.swift */; };
+		8BB5CFFF2D7B1A180047C2C7 /* AuthApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5CFFE2D7B1A160047C2C7 /* AuthApiImpl.swift */; };
+		8BB5D0012D7B1AB00047C2C7 /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5D0002D7B1AB00047C2C7 /* AuthApi.swift */; };
+		8BB5D0032D7B1CB80047C2C7 /* FlutterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5D0022D7B1CB20047C2C7 /* FlutterError.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
@@ -63,6 +66,9 @@
 		8BB5CFF62D7912170047C2C7 /* QRScannerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerApi.swift; sourceTree = "<group>"; };
 		8BB5CFFA2D79165B0047C2C7 /* QRScannerApiImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerApiImpl.swift; sourceTree = "<group>"; };
 		8BB5CFFC2D7A5EBD0047C2C7 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		8BB5CFFE2D7B1A160047C2C7 /* AuthApiImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApiImpl.swift; sourceTree = "<group>"; };
+		8BB5D0002D7B1AB00047C2C7 /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
+		8BB5D0022D7B1CB20047C2C7 /* FlutterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterError.swift; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +164,9 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				8BB5D0022D7B1CB20047C2C7 /* FlutterError.swift */,
+				8BB5D0002D7B1AB00047C2C7 /* AuthApi.swift */,
+				8BB5CFFE2D7B1A160047C2C7 /* AuthApiImpl.swift */,
 				8BB5CFFC2D7A5EBD0047C2C7 /* QRScannerViewController.swift */,
 				8BB5CFFA2D79165B0047C2C7 /* QRScannerApiImpl.swift */,
 				8BB5CFF62D7912170047C2C7 /* QRScannerApi.swift */,
@@ -385,10 +394,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB5D0012D7B1AB00047C2C7 /* AuthApi.swift in Sources */,
 				8BB5CFFD2D7A5EBD0047C2C7 /* QRScannerViewController.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				8BB5CFFB2D79165E0047C2C7 /* QRScannerApiImpl.swift in Sources */,
+				8BB5D0032D7B1CB80047C2C7 /* FlutterError.swift in Sources */,
+				8BB5CFFF2D7B1A180047C2C7 /* AuthApiImpl.swift in Sources */,
 				8BB5CFF72D7912170047C2C7 /* QRScannerApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

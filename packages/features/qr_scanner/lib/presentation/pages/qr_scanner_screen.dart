@@ -1,3 +1,4 @@
+import 'package:app_common/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/qr_bloc.dart';
@@ -17,13 +18,17 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Escáner QR")),
+      appBar: AppBar(title: Text(AppStrings.scanQR)),
       body: Center(
         child: BlocConsumer<QRBloc, QRState>(
           listener: (context, state) {
             if (state is QRScanned) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Escaneado: ${state.data.content}")),
+                SnackBar(
+                  content: Text(
+                    "${AppStrings.scanning}: ${state.data.content}",
+                  ),
+                ),
               );
               context.read<QRBloc>().add(ScanHistoryQR());
             }
@@ -40,7 +45,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
                     Expanded(
                       child:
                           state.data.isEmpty
-                              ? Center(child: Text("No QR codes scanned"))
+                              ? Center(child: Text(AppStrings.noQrCodesScanned))
                               : ListView.builder(
                                 itemCount: state.data.length,
                                 itemBuilder: (context, index) {

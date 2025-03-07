@@ -1,3 +1,4 @@
+import 'package:app_common/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_scanner/domain/usecases/qr_codes_history.dart';
 
@@ -46,7 +47,7 @@ class QRBloc extends Bloc<QREvent, QRState> {
       final data = await scanQRCode();
       emit(QRScanned(data));
     } catch (e) {
-      emit(QRError("Error al escanear QR"));
+      emit(QRError(AppStrings.scanError));
     }
   }
 
@@ -59,7 +60,7 @@ class QRBloc extends Bloc<QREvent, QRState> {
       final data = await qrCodeHistory();
       emit(QRScannedList(data));
     } catch (e) {
-      emit(QRError("Error al obtener el historial de QR"));
+      emit(QRError(AppStrings.error));
     }
   }
 }

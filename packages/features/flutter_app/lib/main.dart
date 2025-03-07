@@ -1,3 +1,4 @@
+import 'package:app_common/utils/app_constants.dart';
 import 'package:auth_biometrics/data/repositories/auth_repository_impl.dart';
 import 'package:auth_biometrics/domain/usecases/authenticate_user.dart';
 import 'package:auth_biometrics/presentation/bloc/auth_bloc.dart';
@@ -9,7 +10,6 @@ import 'package:qr_scanner/domain/usecases/qr_codes_history.dart';
 import 'package:qr_scanner/qr_scanner.dart';
 
 void main() async {
-  // Initialize Hive
   await Hive.initFlutter();
   Hive.registerAdapter(ScannedDataAdapter());
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         home: AuthScreen(),
-        routes: {'/qr_screen': (context) => QRScannerScreen()},
+        routes: {AppRoutes.qrScanner: (context) => QRScannerScreen()},
       ),
     );
   }

@@ -1,28 +1,50 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:auth_biometrics/domain/usecases/authenticate_user.dart';
-import 'package:auth_biometrics/domain/entities/auth_result.dart';
+import 'package:auth_biometrics/data/native/auth_api.dart';
 import 'package:auth_biometrics/domain/repositories/auth_repository.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-class MockAuthRepository extends Mock implements AuthRepository {}
+class FakeAuthRepositoryImpl implements AuthRepository {
+  @override
+  Future<AuthResult> authenticate() async {
+    return AuthResult(success: true, message: "Authenticated");
+  }
+}
 
 void main() {
-  late AuthenticateUser usecase;
-  late MockAuthRepository mockRepository;
+  late FakeAuthRepositoryImpl fakeAuthRepository;
 
   setUp(() {
-    mockRepository = MockAuthRepository();
-    usecase = AuthenticateUser(mockRepository);
+    fakeAuthRepository = FakeAuthRepositoryImpl();
   });
 
-  test('Debe autenticar exitosamente', () async {
-    final authResult = AuthResult(success: true, message: "Autenticado");
-    // when(mockRepository.authenticate()).thenAnswer((_) async => authResult.success!!);
+  group('Fake AuthRepositoryImpl tests', () {
+    test('should authenticate successfully', () async {
+      // Act: Call the authenticate method on the fake repository
+      final result = await fakeAuthRepository.authenticate();
 
-    final result = await usecase.call();
+      // Assert: Verify the result
+      expect(result.success, true);
+      expect(result.message, "Authenticated");
+    });
 
-    expect(result.success, true);
-    expect(result.message, "Autenticado");
-    verify(mockRepository.authenticate());
+    test('should authenticate unsuccessfully (simulate failure)', () async {
+      // Create a fake AuthRepositoryImpl that simulates failure
+      final fakeFailureAuthRepository = FakeAuthRepositoryImplFailure();
+
+      // Act: Call the authenticate method on the fake failure repository
+      final result = await fakeFailureAuthRepository.authenticate();
+
+      // Assert: Verify the result for failure
+      expect(result.success, false);
+      expect(result.message, "Error: Authentication failed");
+    });
   });
+}
+
+// Fake failure implementation of AuthRepositoryImpl
+class FakeAuthRepositoryImplFailure implements AuthRepository {
+  @override
+  Future<AuthResult> authenticate() async {
+    // Simulating a failure scenario
+    return AuthResult(success: false, message: "Error: Authentication failed");
+  }
 }

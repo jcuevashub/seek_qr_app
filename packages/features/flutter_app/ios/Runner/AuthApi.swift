@@ -11,24 +11,6 @@ import Foundation
   #error("Unsupported platform.")
 #endif
 
-/// Error class for passing custom error details to Dart side.
-final class PigeonError: Error {
-  let code: String
-  let message: String?
-  let details: Sendable?
-
-  init(code: String, message: String?, details: Sendable?) {
-    self.code = code
-    self.message = message
-    self.details = details
-  }
-
-  var localizedDescription: String {
-    return
-      "PigeonError(code: \(code), message: \(message ?? "<nil>"), details: \(details ?? "<nil>")"
-      }
-}
-
 private func wrapResult(_ result: Any?) -> [Any?] {
   return [result]
 }
@@ -67,23 +49,23 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
 /// Generated class from Pigeon that represents data sent in messages.
 struct AuthResult {
   var success: Bool
-  var errorMessage: String? = nil
+  var message: String? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> AuthResult? {
     let success = pigeonVar_list[0] as! Bool
-    let errorMessage: String? = nilOrValue(pigeonVar_list[1])
+    let message: String? = nilOrValue(pigeonVar_list[1])
 
     return AuthResult(
       success: success,
-      errorMessage: errorMessage
+      message: message
     )
   }
   func toList() -> [Any?] {
     return [
       success,
-      errorMessage,
+      message,
     ]
   }
 }

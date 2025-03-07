@@ -14,7 +14,7 @@ import UIKit
         
         let qrScannerApi = QRScannerApiImpl()
         QRScannerApiSetup.setUp(binaryMessenger: binaryMessenger, api: qrScannerApi)
-        
+        AuthApiSetup.setUp(binaryMessenger: controller.binaryMessenger, api: AuthApiImpl())
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

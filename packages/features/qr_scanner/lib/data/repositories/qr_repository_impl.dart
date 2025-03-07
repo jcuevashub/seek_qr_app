@@ -20,14 +20,14 @@ class QRRepositoryImpl implements QRRepository {
         content: result.value!,
         timestamp: DateTime.now(),
       );
-      await _saveToHistory(scannedData);
+      await saveToHistory(scannedData);
       return scannedData;
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  Future<void> _saveToHistory(ScannedData data) async {
+  Future<void> saveToHistory(ScannedData data) async {
     if (historyBox == null) {
       await init();
     }

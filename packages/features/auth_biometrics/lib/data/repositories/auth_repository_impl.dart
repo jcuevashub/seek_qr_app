@@ -4,8 +4,6 @@ import '../../domain/repositories/auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi _api = AuthApi();
 
-  // final LocalAuthentication auth = LocalAuthentication();
-
   @override
   Future<AuthResult> authenticate() async {
     try {

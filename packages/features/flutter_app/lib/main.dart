@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         home: AuthScreen(),
+        debugShowCheckedModeBanner: false,
         routes: {AppRoutes.qrScanner: (context) => QRScannerScreen()},
       ),
     );

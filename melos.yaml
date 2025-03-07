@@ -9,7 +9,9 @@ packages:
 scripts:
   bootstrap: melos bootstrap
   analyze: melos run analyze
-  test: melos run test
+  test:
+    run: melos exec --dir-exists=test --flutter -- flutter test
+    description: Run Flutter tests in all packages with a 'test' directory.
   format: melos run format
 
 command:

@@ -1,4 +1,4 @@
-name: WhatTodo Flutter Tests
+name: Seek QR Scanner Flutter Tests
 
 on:
   push:

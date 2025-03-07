@@ -1,0 +1,105 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "seek_qr_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "seek_qr_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "seek_qr_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "native_plugins",
+            "cwd": "packages/native_plugins",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "native_plugins (profile mode)",
+            "cwd": "packages/native_plugins",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "native_plugins (release mode)",
+            "cwd": "packages/native_plugins",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "auth_biometrics",
+            "cwd": "packages/features/auth_biometrics",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "auth_biometrics (profile mode)",
+            "cwd": "packages/features/auth_biometrics",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "auth_biometrics (release mode)",
+            "cwd": "packages/features/auth_biometrics",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_app",
+            "cwd": "packages/features/flutter_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_app (profile mode)",
+            "cwd": "packages/features/flutter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_app (release mode)",
+            "cwd": "packages/features/flutter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "qr_scanner",
+            "cwd": "packages/features/qr_scanner",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "qr_scanner (profile mode)",
+            "cwd": "packages/features/qr_scanner",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "qr_scanner (release mode)",
+            "cwd": "packages/features/qr_scanner",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

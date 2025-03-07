@@ -1,10 +1,8 @@
-name: seek_qr_app
-version: 1.0.0+1
-
+name: native_plugins
 environment:
   sdk: ^3.7.0
 
 dependencies:
+  pigeon: ^24.2.1
   flutter:
     sdk: flutter
-  melos: ^6.3.2

@@ -43,3 +43,11 @@ app.*.map.json
 /flutter_app/android/app/debug
 /flutter_app/android/app/profile
 /flutter_app/android/app/release
+apps/flutter_app/.metadata
+apps/flutter_app/.dart_tool
+apps/flutter_app/analysis_options.yaml
+apps/flutter_app/ios/build
+apps/flutter_app/linux
+apps/flutter_app/macos
+apps/flutter_app/web
+apps/flutter_app/windows

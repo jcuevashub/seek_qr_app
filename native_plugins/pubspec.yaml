@@ -1,0 +1,8 @@
+name: native_plugins
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  pigeon: ^24.2.1
+  flutter:
+    sdk: flutter

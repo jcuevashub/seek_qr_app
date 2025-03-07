@@ -1,0 +1,22 @@
+name: auth_biometrics
+description: Modulo de autenticacion biometrica.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  app_common:
+    path: ../app_common
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.4.2
+  build_runner: ^2.4.6
+
+flutter:
+  uses-material-design: true

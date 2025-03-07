@@ -1,0 +1,54 @@
+name: 🍏🚀 Deploy to appstore
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  deployIos:
+    runs-on: macos-latest
+    env:
+      ASC_JSON_KEY: ${{ secrets.ASC_JSON_KEY }}
+      FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+      - name: ⚙️ Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: 'stable'
+          cache: true
+        id: flutter
+      - name: Update version number from tag
+        run: |
+          # Extract the version components from refs tag (e.g., 1.2.3)
+          TAG_NAME=${{  github.ref_name }}
+          VERSION=${TAG_NAME#v} # Remove the 'v' prefix if it exists
+          echo "FLUTTER_BUILD_NAME=$VERSION" >> $GITHUB_ENV
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+          NUMBER=$MAJOR$MINOR$PATCH
+          echo "FLUTTER_BUILD_NUMBER=$NUMBER" >> $GITHUB_ENV
+      - name: 📦 Get Packages
+        run: flutter pub get
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: ios
+      - name: Setup app store connect
+        run: echo "$ASC_JSON_KEY" >> ./ios/fastlane/store.json
+      - name: Install pod
+        run: cd ios && pod install
+      - name: Build and Deploy to TestFlight
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: |
+          cd ./ios
+          bundle exec fastlane ios beta

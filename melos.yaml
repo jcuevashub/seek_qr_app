@@ -2,6 +2,8 @@ name: seek_qr_app
 repository: https://github.com/jcuevashub/seek_qr_app
 
 packages:
+  - apps
+  - native_plugins
   - packages/*
 
 scripts:

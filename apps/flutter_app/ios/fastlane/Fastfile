@@ -1,0 +1,39 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    app_store_connect_api_key(
+      key_id: "WP39M9YKP6",
+      issuer_id: "66dd5490-ba1e-4d1c-b0c9-77a4622d6735",
+      key_filepath: "fastlane/AuthKey_WP39M9YKP6.p8",
+      duration: 1200,
+      in_house: false
+    )
+    match(app_identifier: "com.jacksoncuevas.qrscanner", type: "appstore")
+    updated_version_number = bump_build_number()
+    increment_build_number(build_number: bump_build_number())
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_testflight()
+  end
+
+  def bump_build_number()
+    lastest_build_number = latest_testflight_build_number(increment_build_number: 0)
+    return (lastest_build_number + 1)
+  end
+end

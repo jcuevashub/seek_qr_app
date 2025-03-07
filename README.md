@@ -62,5 +62,5 @@ melos run test
 ```
 
 ## **📜 License**  
-MIT License - [YourRepository](https://github.com/jcuevas/seek_qr_app)  
+MIT License - [YourRepository](https://github.com/jcuevashub/seek_qr_app.git)  
 

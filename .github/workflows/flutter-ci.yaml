@@ -1,0 +1,128 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests & Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.1'
+      - run: flutter --version
+
+      - name: Get Packages
+        run: flutter pub get
+
+      - name: Set up Melos
+        uses: bluefireteam/melos-action@v3
+      
+      - name: Run tests
+        run: melos exec -- flutter test
+
+  build-android:
+    name: Build Android APK & AAB
+    needs: test  # Run only if tests pass
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.x.x
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Build AAB (for Play Store)
+        run: flutter build appbundle --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+
+#   build-ios:
+#     name: Build iOS IPA
+#     needs: test
+#     runs-on: macos-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: 3.x.x
+#           cache: true
+
+#       - name: Install dependencies
+#         run: flutter pub get
+
+#       - name: Build iOS IPA
+#         run: flutter build ipa --release
+
+#       - name: Upload IPA artifact
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: release-ipa
+#           path: build/ios/ipa/*.ipa
+
+#   deploy-firebase:
+#     name: Deploy to Firebase
+#     needs: build-android
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Download APK
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: release-apk
+#           path: build/app/outputs/flutter-apk/
+
+#       - name: Deploy to Firebase App Distribution
+#         uses: wzieba/Firebase-Distribution-Github-Action@v1
+#         with:
+#           appId: ${{ secrets.FIREBASE_APP_ID }}
+#           serviceCredentialsJson: ${{ secrets.FIREBASE_CREDENTIALS }}
+#           groups: testers
+#           file: build/app/outputs/flutter-apk/app-release.apk
+
+#   deploy-playstore:
+#     name: Deploy to Google Play Store
+#     needs: build-android
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Download AAB
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: release-aab
+#           path: build/app/outputs/bundle/release/
+
+#       - name: Upload to Google Play Store
+#         uses: r0adkll/upload-google-play@v1
+#         with:
+#           serviceAccountJson: ${{ secrets.GOOGLE_PLAY_CREDENTIALS }}
+#           packageName: com.yourapp.package
+#           releaseFiles: build/app/outputs/bundle/release/app-release.aab
+#           track: internal

@@ -3,8 +3,8 @@ repository: https://github.com/jcuevashub/seek_qr_app
 
 packages:
   - apps
-  - native_plugins
-  - packages/*
+  - packages/qr_scanner
+  - packages/auth_biometrics
 
 scripts:
   bootstrap: melos bootstrap

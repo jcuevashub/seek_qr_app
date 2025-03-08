@@ -66,31 +66,33 @@ jobs:
           name: release-aab
           path: apps/flutter_app/android/build/app/outputs/bundle/release/app-release.aab
 
-#   build-ios:
-#     name: Build iOS IPA
-#     needs: test
-#     runs-on: macos-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+  build-ios:
+    name: Build iOS IPA
+    needs: test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Setup Flutter
-#         uses: subosito/flutter-action@v2
-#         with:
-#           flutter-version: 3.x.x
-#           cache: true
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.1'
+          cache: true
 
-#       - name: Install dependencies
-#         run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: apps/flutter_app
 
-#       - name: Build iOS IPA
-#         run: flutter build ipa --release
+      - name: Build iOS IPA
+        run: flutter build ipa --release
+        working-directory: apps/flutter_app
 
-#       - name: Upload IPA artifact
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: release-ipa
-#           path: build/ios/ipa/*.ipa
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-ipa
+          path: apps/flutter_app/ios/build/ios/ipa/*.ipa
 
   deploy-firebase:
     name: Deploy to Firebase
@@ -100,8 +102,8 @@ jobs:
       - name: Download APK
         uses: actions/download-artifact@v4
         with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/
+          name: app-release-apk
+          path: apps/flutter_app/android/build/app/outputs/flutter-apk/app-release.apk
 
       - name: Deploy to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1

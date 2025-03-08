@@ -3,8 +3,7 @@ description: Modulo de autenticacion biometrica.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
-  flutter: 3.19.0
+  sdk: ^3.7.0
 
 dependencies:
   app_common:

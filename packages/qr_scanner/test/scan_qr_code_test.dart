@@ -4,11 +4,9 @@ import 'package:qr_scanner/data/native/qr_scanner_api.dart';
 import 'package:qr_scanner/data/repositories/qr_repository_impl.dart';
 import 'package:qr_scanner/domain/entities/scanned_data.dart';
 
-// Fake QR Scanner API to simulate QR scanning behavior.
 class FakeQRScannerApi implements QRScannerApi {
   @override
   Future<QRCode> scanQRCode() async {
-    // Return a fake result.
     return QRCode(value: "https://example.com");
   }
 
@@ -21,18 +19,14 @@ class FakeQRScannerApi implements QRScannerApi {
   String get pigeonVar_messageChannelSuffix => '';
 }
 
-// Fake QRRepositoryImpl to simulate QR repository behavior
 class FakeQRRepositoryImpl extends QRRepositoryImpl {
   final List<ScannedData> fakeHistory = [];
 
   @override
-  Future<void> init() async {
-    // No need to initialize anything for the fake version.
-  }
+  Future<void> init() async {}
 
   @override
   Future<ScannedData> scanQR() async {
-    // Simulate a QR scan by returning a fake scanned result
     final scannedData = ScannedData(
       content: "https://fake-url.com",
       timestamp: DateTime.now(),
@@ -43,7 +37,6 @@ class FakeQRRepositoryImpl extends QRRepositoryImpl {
 
   @override
   Future<List<ScannedData>> getHistory() async {
-    // Return the fake history
     return fakeHistory;
   }
 

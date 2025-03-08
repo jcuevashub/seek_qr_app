@@ -1,9 +1,8 @@
 name: native_plugins
 environment:
-  sdk: ">=3.3.0 <4.0.0"
-  flutter: 3.19.0
+  sdk: ^3.7.0
 
 dependencies:
-  #pigeon: ^24.2.1
+  pigeon: ^24.2.1
   flutter:
     sdk: flutter

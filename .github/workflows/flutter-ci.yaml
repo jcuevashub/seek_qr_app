@@ -57,13 +57,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: apps/flutter_app/build/app/outputs/flutter-apk/app-release.apk
+          path: apps/flutter_app/android/build/app/outputs/flutter-apk/app-release.apk
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-aab
-          path: apps/flutter_app/build/app/outputs/bundle/release/app-release.aab
+          path: apps/flutter_app/android/build/app/outputs/bundle/release/app-release.aab
 
 #   build-ios:
 #     name: Build iOS IPA

@@ -44,9 +44,11 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        working-directory: apps/flutter_app
 
       - name: Build APK
         run: flutter build apk --release
+        working-directory: apps/flutter_app
 
       - name: Build AAB (for Play Store)
         run: flutter build appbundle --release
@@ -55,13 +57,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: apps/flutter_app/build/app/outputs/flutter-apk/app-release.apk
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-aab
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: apps/flutter_app/build/app/outputs/bundle/release/app-release.aab
 
 #   build-ios:
 #     name: Build iOS IPA

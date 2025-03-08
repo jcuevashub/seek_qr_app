@@ -89,24 +89,24 @@ jobs:
 #           name: release-ipa
 #           path: build/ios/ipa/*.ipa
 
-#   deploy-firebase:
-#     name: Deploy to Firebase
-#     needs: build-android
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Download APK
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: release-apk
-#           path: build/app/outputs/flutter-apk/
+  deploy-firebase:
+    name: Deploy to Firebase
+    needs: build-android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/
 
-#       - name: Deploy to Firebase App Distribution
-#         uses: wzieba/Firebase-Distribution-Github-Action@v1
-#         with:
-#           appId: ${{ secrets.FIREBASE_APP_ID }}
-#           serviceCredentialsJson: ${{ secrets.FIREBASE_CREDENTIALS }}
-#           groups: testers
-#           file: build/app/outputs/flutter-apk/app-release.apk
+      - name: Deploy to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsJson: ${{ secrets.FIREBASE_CREDENTIALS }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
 
 #   deploy-playstore:
 #     name: Deploy to Google Play Store
